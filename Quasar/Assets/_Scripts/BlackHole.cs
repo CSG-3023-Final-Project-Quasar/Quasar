@@ -18,7 +18,7 @@ public class BlackHole : MonoBehaviour
         transform.position = pos;
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnCollisionStay(Collision col)
     {
         if(col.gameObject.name == "Player")
         {

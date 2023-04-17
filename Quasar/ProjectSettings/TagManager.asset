@@ -12,9 +12,9 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
+  - Ground
+  - Gravity_Layer
+  - BlackHole
   - 
   - Red_Platform
   - Blue_Platform
