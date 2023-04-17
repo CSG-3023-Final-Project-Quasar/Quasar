@@ -12,17 +12,21 @@ public class Player : MonoBehaviour
     private bool jump;
     private bool collide;
 
+    private bool redOn;
+
     public float grav;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         grav = -9.8f;
+        redOn = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        rb.WakeUp();
         if (!collide)
         {
             Vector3 pos = transform.position;
@@ -34,6 +38,22 @@ public class Player : MonoBehaviour
         {
             if(Physics.gravity.y < 0) rb.velocity = new Vector3(rb.velocity.x, 7, 0);
             if(Physics.gravity.y > 0) rb.velocity = new Vector3(rb.velocity.x, -7, 0);
+        }
+
+        if(Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (redOn)
+            {
+                Physics.IgnoreLayerCollision(0, 11, true);
+                Physics.IgnoreLayerCollision(0, 12, false);
+                redOn = false;
+            }
+            else
+            {
+                Physics.IgnoreLayerCollision(0, 11, false);
+                Physics.IgnoreLayerCollision(0, 12, true);
+                redOn = true;
+            }
         }
     }
 
