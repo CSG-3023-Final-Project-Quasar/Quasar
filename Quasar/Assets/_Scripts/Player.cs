@@ -18,13 +18,11 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         grav = -9.8f;
-        //rb.velocity = new Vector3(4, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Physics.gravity = new Vector3(0, grav, 0);
         if (!collide)
         {
             Vector3 pos = transform.position;
@@ -42,9 +40,8 @@ public class Player : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         //Don't collide with the ground, only obstacles.
-        if(col.gameObject.layer != 7)
+        if (col.gameObject.layer != 7)
         collide = true;
-
     }
 
     void OnCollisionExit(Collision col)
