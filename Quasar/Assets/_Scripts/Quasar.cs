@@ -28,6 +28,7 @@ public class Quasar : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Level1" && play == null)
         {
             Invoke("Respawn", 1.0f);
+            DeathCounter.UPDATE_SCORE();
         }
     }
 }
