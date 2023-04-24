@@ -16,6 +16,7 @@ public class BlackHole : MonoBehaviour
         Vector3 pos = transform.position;
         pos.x += 4 * Time.deltaTime;
         transform.position = pos;
+
     }
 
     void OnCollisionStay(Collision col)
