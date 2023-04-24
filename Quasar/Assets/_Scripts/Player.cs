@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
         Physics.IgnoreLayerCollision(0, 11, true);
         Physics.IgnoreLayerCollision(0, 12, false);
-        redMat.SetColor("_Color", new Color(255, 0, 0, 0.3f));
+        redMat.SetColor("_Color", new Color(255, 0, 0, .1f));
         blueMat.SetColor("_Color", new Color(0, 0, 255, 1f));
     }
 
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
                 Physics.IgnoreLayerCollision(0, 11, true);
                 Physics.IgnoreLayerCollision(0, 12, false);
                 redOn = false;
-                redMat.SetColor("_Color", new Color(255, 0, 0, 0.3f));
+                redMat.SetColor("_Color", new Color(255, 0, 0, .1f));
                 blueMat.SetColor("_Color", new Color(0, 0, 255, 1f));
             }
             else
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
                 Physics.IgnoreLayerCollision(0, 12, true);
                 redOn = true;
                 redMat.SetColor("_Color", new Color(255, 0, 0, 1f));
-                blueMat.SetColor("_Color", new Color(0, 0, 255, 0.3f));
+                blueMat.SetColor("_Color", new Color(0, 0, 255, .1f));
             }
         }
     }
