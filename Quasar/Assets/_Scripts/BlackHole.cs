@@ -23,8 +23,12 @@ public class BlackHole : MonoBehaviour
     {
         if(col.gameObject.name == "Player")
         {
-            Destroy(col.gameObject);
+            //Destroy(col.gameObject);
             Quasar.Respawn();
+
+            //Invoke("Respawn", 1.0f);
+            DeathCount.UpdateScore();
+            TotalDeaths.UPDATE_SCORE();
         }
     }
 }

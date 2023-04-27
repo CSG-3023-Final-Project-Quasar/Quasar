@@ -17,9 +17,10 @@ public class Quasar : MonoBehaviour
     {
         if(scenename == "End")
         {
-            DeathCount.ResetScore();
+            DeathCount.FinalScore();
         }
         SceneManager.LoadScene(scenename);
+        DeathCount.ResetScore();
     }
 
     static public void Respawn()
@@ -29,11 +30,21 @@ public class Quasar : MonoBehaviour
 
     void Update()
     {
+        if(play != null && play.transform.position.y > 10.0f || play.transform.position.y < -10.0f) 
+        {
+            Respawn();
+            DeathCount.UpdateScore();
+            TotalDeaths.UPDATE_SCORE();
+            
+        }
+
         if (SceneManager.GetActiveScene().name == "Level1" && play == null)
         {
             Invoke("Respawn", 1.0f);
             DeathCount.UpdateScore();
             TotalDeaths.UPDATE_SCORE();
         }
+
+        
     }
 }

@@ -28,8 +28,8 @@ public class Player : MonoBehaviour
 
         Physics.IgnoreLayerCollision(0, 11, true);
         Physics.IgnoreLayerCollision(0, 12, false);
-        redMat.SetColor("_Color", new Color(255, 0, 0, .1f));
-        blueMat.SetColor("_Color", new Color(0, 0, 255, 1f));
+        redMat.SetColor("_Color", new Color(255, 0, 0, 0));
+        blueMat.SetColor("_Color", new Color(0, 0, 255, 255));
     }
 
     // Update is called once per frame
@@ -56,16 +56,16 @@ public class Player : MonoBehaviour
                 Physics.IgnoreLayerCollision(0, 11, true);
                 Physics.IgnoreLayerCollision(0, 12, false);
                 redOn = false;
-                redMat.SetColor("_Color", new Color(255, 0, 0, .1f));
-                blueMat.SetColor("_Color", new Color(0, 0, 255, 1f));
+                redMat.SetColor("_Color", new Color(255, 0, 0, 0));
+                blueMat.SetColor("_Color", new Color(0, 0, 255, 255));
             }
             else
             {
                 Physics.IgnoreLayerCollision(0, 11, false);
                 Physics.IgnoreLayerCollision(0, 12, true);
                 redOn = true;
-                redMat.SetColor("_Color", new Color(255, 0, 0, 1f));
-                blueMat.SetColor("_Color", new Color(0, 0, 255, .1f));
+                redMat.SetColor("_Color", new Color(255, 0, 0, 255));
+                blueMat.SetColor("_Color", new Color(0, 0, 255, 0));
             }
         }
     }
@@ -75,7 +75,11 @@ public class Player : MonoBehaviour
         //Don't stop on colliding with the ground, only obstacles.
         if (col.gameObject.tag == "Platform")
         collide = true;
+
+        if (col.gameObject.tag == "Goal")
+        Quasar.ChangeScene("End");
     }
+
 
     void OnCollisionExit(Collision col)
     {
