@@ -12,11 +12,11 @@ public class TotalDeaths : MonoBehaviour
     void Awake() {
         UIText = GetComponent<TextMeshProUGUI>();
 
-        // Checks for an existing TotalDeaths
+        //Checks for an existing TotalDeaths
         if(PlayerPrefs.HasKey("TotalDeaths")) {
             SCORE = PlayerPrefs.GetInt("TotalDeaths");
         }
-        // Assigns the score of deaths to TotalDeaths
+        //Assigns the score of deaths to TotalDeaths
         PlayerPrefs.SetInt("TotalDeaths", SCORE);
     }
 
@@ -32,10 +32,14 @@ public class TotalDeaths : MonoBehaviour
     }
 
     static public void UPDATE_SCORE() {
-        SCORE += 1; // Updates total death counter
+        SCORE += 1; //Updates total death counter
     }
 
-    // Reset PlayerPrefs TotalDeaths
+    static public int GET_SCORE() {
+        return SCORE; //Returns total death count
+    }
+
+    //Reset PlayerPrefs TotalDeaths
     [Tooltip("Check this box to reset the TotalDeaths in PlayerPrefs")]
     public bool resetTotalDeaths = false;
 

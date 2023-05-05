@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public float grav;
     public Material blueMat;
     public Material redMat;
+
+    private GameObject go;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,17 +41,17 @@ public class Player : MonoBehaviour
         if (!collide)
         {
             Vector3 pos = transform.position;
-            pos.x += 4 * Time.deltaTime;
+            pos.x += 4 * Time.deltaTime; //Set movement for the player
             transform.position = pos;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0)
+        if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0) //Makes player jump based on gravity
         {
             if(Physics.gravity.y < 0) rb.velocity = new Vector3(rb.velocity.x, 7, 0);
             if(Physics.gravity.y > 0) rb.velocity = new Vector3(rb.velocity.x, -7, 0);
         }
 
-        if(Input.GetKeyDown(KeyCode.DownArrow))
+        if(Input.GetKeyDown(KeyCode.DownArrow)) //Switch between red and blue platforms
         {
             if (redOn)
             {
@@ -74,16 +76,19 @@ public class Player : MonoBehaviour
     {
         //Don't stop on colliding with the ground, only obstacles.
         if (col.gameObject.tag == "Platform")
-        collide = true;
+            collide = true;
 
-        if (col.gameObject.tag == "Goal")
-        Quasar.ChangeScene("End");
+        //Check for victory
+        if (col.gameObject.tag == "Goal" && go != col.gameObject) {
+            go = col.gameObject; //Ensures only one change in scene
+            Quasar.ChangeScene("End");
+        }
     }
 
 
     void OnCollisionExit(Collision col)
     {
         if(col.gameObject.tag == "Platform")
-        collide = false;
+            collide = false; //Resume movement
     }
 }

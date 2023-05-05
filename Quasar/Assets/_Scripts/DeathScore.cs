@@ -13,12 +13,7 @@ public class DeathScore : MonoBehaviour
     {
         uiText = GetComponent<TextMeshProUGUI>();
         finalScore = DeathCount.GetScore();
-        uiText.text = "Deaths: " + finalScore.ToString("#,0"); // Displays deaths
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
- 
+        uiText.text = "Deaths: " + finalScore.ToString("#,0") + "\n"
+        + "Total Deaths: " + TotalDeaths.GET_SCORE().ToString("#,0"); //Displays deaths in End scene
     }
 }

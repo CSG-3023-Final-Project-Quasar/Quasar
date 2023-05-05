@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1054,7 +1054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 241, y: 55}
+  m_AnchoredPosition: {x: 241, y: 95}
   m_SizeDelta: {x: 170, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2023689282
@@ -1078,11 +1078,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "You are being chased by a black hole, don\u2019t let it catch you!!\r\n\nAvoid
-    or jump into the platforms pressing space for jumping but be careful! Gravity
-    might change during your run, watch out for color changes in the background\u2026
-    Space is complicated.\r\n\nChoose the platforms you are going to jump on wisely!
-    Press the down arrow to activate platforms or deactivate them.\r\n\nBe careful
-    and remember\u2026 in space no one can hear you scream.\r\n"
+    the obstacles and press space to jump, but be careful! Gravity will change during
+    your run, so watch out for color changes in the background\u2026 Space is complicated.\r\n\nChoose
+    the platforms you are going to jump on wisely! Press the down arrow key to switch
+    between activating platforms.\r\n\nRemember\u2026 in space no one can hear you
+    scream.\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
@@ -1109,8 +1109,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
-  m_fontSizeBase: 7
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
