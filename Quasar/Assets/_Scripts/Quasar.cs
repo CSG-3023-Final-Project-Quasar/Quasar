@@ -15,19 +15,27 @@ public class Quasar : MonoBehaviour
 
     static public void ChangeScene(string scenename)
     {
+        if(scenename == "End")
+        {
+            DeathCount.FinalScore(); //Set final score once level is complete
+            DeathCount.ResetScore(); //Set the score back to 0
+        }
         SceneManager.LoadScene(scenename);
     }
 
     static public void Respawn()
     {
-        ChangeScene(SceneManager.GetActiveScene().name);
+        ChangeScene(SceneManager.GetActiveScene().name); //Start scene again
     }
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Level1" && play == null)
+        //Check for going out of bounds
+        if(play != null && play.transform.position.y > 10.0f || play.transform.position.y < -10.0f) 
         {
-            Invoke("Respawn", 1.0f);
+            Respawn();
+            DeathCount.UpdateScore(); //Increment deaths
+            TotalDeaths.UPDATE_SCORE();
         }
     }
 }

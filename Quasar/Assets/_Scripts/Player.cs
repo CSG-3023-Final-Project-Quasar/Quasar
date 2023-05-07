@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using UnityEngine;
 
@@ -12,41 +14,81 @@ public class Player : MonoBehaviour
     private bool jump;
     private bool collide;
 
+    private bool redOn;
+
     public float grav;
+    public Material blueMat;
+    public Material redMat;
+
+    private GameObject go;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         grav = -9.8f;
+        redOn = false;
+
+        Physics.IgnoreLayerCollision(0, 11, true);
+        Physics.IgnoreLayerCollision(0, 12, false);
+        redMat.SetColor("_Color", new Color(255, 0, 0, 0));
+        blueMat.SetColor("_Color", new Color(0, 0, 255, 255));
     }
 
     // Update is called once per frame
     void Update()
     {
+        rb.WakeUp();
         if (!collide)
         {
             Vector3 pos = transform.position;
-            pos.x += 4 * Time.deltaTime;
+            pos.x += 4 * Time.deltaTime; //Set movement for the player
             transform.position = pos;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0)
+        if (Input.GetKeyDown(KeyCode.Space) && rb.velocity.y == 0) //Makes player jump based on gravity
         {
             if(Physics.gravity.y < 0) rb.velocity = new Vector3(rb.velocity.x, 7, 0);
             if(Physics.gravity.y > 0) rb.velocity = new Vector3(rb.velocity.x, -7, 0);
+        }
+
+        if(Input.GetKeyDown(KeyCode.DownArrow)) //Switch between red and blue platforms
+        {
+            if (redOn)
+            {
+                Physics.IgnoreLayerCollision(0, 11, true);
+                Physics.IgnoreLayerCollision(0, 12, false);
+                redOn = false;
+                redMat.SetColor("_Color", new Color(255, 0, 0, 0));
+                blueMat.SetColor("_Color", new Color(0, 0, 255, 255));
+            }
+            else
+            {
+                Physics.IgnoreLayerCollision(0, 11, false);
+                Physics.IgnoreLayerCollision(0, 12, true);
+                redOn = true;
+                redMat.SetColor("_Color", new Color(255, 0, 0, 255));
+                blueMat.SetColor("_Color", new Color(0, 0, 255, 0));
+            }
         }
     }
 
     void OnCollisionEnter(Collision col)
     {
-        //Don't collide with the ground, only obstacles.
-        if (col.gameObject.layer != 7)
-        collide = true;
+        //Don't stop on colliding with the ground, only obstacles.
+        if (col.gameObject.tag == "Platform")
+            collide = true;
+
+        //Check for victory
+        if (col.gameObject.tag == "Goal" && go != col.gameObject) {
+            go = col.gameObject; //Ensures only one change in scene
+            Quasar.ChangeScene("End");
+        }
     }
+
 
     void OnCollisionExit(Collision col)
     {
-        if(col.gameObject.layer != 7)
-        collide = false;
+        if(col.gameObject.tag == "Platform")
+            collide = false; //Resume movement
     }
 }
